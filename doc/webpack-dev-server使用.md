@@ -1,3 +1,5 @@
+webpack-dev-server使用
+========
 
 ``` js
 'use strict'
@@ -34,9 +36,7 @@ module.exports = webpackDevConf
 },
 ```
 
-`npm run dev`:
-
-可能会因为`webapck-dev-server`与`webpack`版本不匹配出现如下错误：
+`npm run dev`:如果你使用的是webpack4, 运行webpack命令需要单独安装`webpack-cli`,否则会看到如下提示：
 
 ```
 Please install 'webpack-cli' in addition to webpack itself to use the CLI.
