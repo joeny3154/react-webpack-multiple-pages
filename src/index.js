@@ -1,6 +1,7 @@
 import 'babel-polyfill'
+// import React from 'react'
 
-let func = () => console.log('func')
+// let func = () => console.log('func')
 
 console.log(Object.values({ 1: 2 }));
 
@@ -21,10 +22,10 @@ a();
 
 class B {
   // static name = 'name'
-  static sayHello () {
+  static sayHello() {
     console.log('hello')
   }
-  sayHi () {
+  sayHi() {
     console.log('hi')
   }
 }
@@ -33,8 +34,6 @@ b.sayHi()
 // console.log(B.name)
 console.log(B.sayHello())
 
-
-import React from 'react'
 const elements = [1, 2, 3].map((item) => {
   return (
     <div>{item}</div>

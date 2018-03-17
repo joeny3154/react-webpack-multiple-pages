@@ -5,6 +5,7 @@ const utils = require('./utils')
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const eslintFormatter = require('react-dev-utils/eslintFormatter')
 
 const resolve = function (dir) {
   return path.resolve(__dirname, '..', dir)
@@ -27,6 +28,19 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.(js|jsx)$/,
+        enforce: 'pre',
+        use: [
+          {
+            options: {
+              formatter: eslintFormatter,
+            },
+            loader: 'eslint-loader',
+          },
+        ],
+        include: [resolve('src')],
+      },
       {
         test: /\.(js|jsx)$/,
         loader: 'babel-loader',
