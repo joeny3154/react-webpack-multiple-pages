@@ -30,28 +30,11 @@
 
 - [资源持久化缓存方案](./doc/webpack资源持久化缓存方案.md)
 
-- *css抽离 ExtractTextPlugin* 
+- [css抽离&压缩](./doc/css抽离_压缩.md)
 
-- *抽离css压缩 OptimizeCSSPlugin* 
+- [生产环境下其他优化配置](./doc/生产环境下优化配置.md) 
 
-- *静态资源管理 CopyWebpackPlugin* 
-
-- *作用域提升优化js运行速度 ModuleConcatenationPlugin* 
-
-- build 脚本
-
-在 production mode 默认
-
-关闭 in-memory caching
-开启 NoEmitOnErrorsPlugin
-开启 ModuleConcatenationPlugin
-开启 optimization.minimize 
-
-- *js压缩 UglifyJsPlugin* 
-
-- *gzip压缩 CompressionWebpackPlugin*
-
-- *可视化分析 BundleAnalyzerPlugin（webpack-bundle-analyzer*
+- [*build脚本*](./doc/build.md)
 
 ### webpack 多页面配置
 

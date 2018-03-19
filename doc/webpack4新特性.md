@@ -68,6 +68,8 @@ optimization.namedModules:true
 optimization.namedChunks:true
 ```
 
+production 
+
 ``` js
 //性能相关配置
 performance:{hints:"error"....}
