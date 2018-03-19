@@ -3,6 +3,7 @@
 const webpackBaseConf = require('./webpack.base.conf')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const merge  = require('webpack-merge')
+const webpack  = require('webpack')
 const utils = require('./utils')
 const config = require('../config')
 const path = require('path')
@@ -11,35 +12,30 @@ const resolve = function (dir) {
   return path.resolve(__dirname, '..', dir)
 }
 
-const webpackDevConf = {
-  entry: {
-    index: './src/index.js'
-  },
-  // entry: utils.getEntrys(),
-  output: {
-    path: config.build.assetsRoot,
-    filename: '[name].js'
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        loader: 'babel-loader',
-        include: [resolve('src')],
-        options: {
-          // ./node_modules/.cache/babel-loader/
-          cacheDirectory: true
-        }
-      },
-    ]
-  },
+const webpackDevConf = merge(webpackBaseConf, {
   devServer: {
     host: 'localhost',
     port: 9001,
     publicPath: '/',
-    open: true
+    hot: true,
+    // open: true
   },
-  plugins: utils.getHtmlPlugins()
-}
+  // optimization: {
+  //   splitChunks: {
+  //     name: 'common'
+  //   },
+  //   runtimeChunk: true
+  // },
+  plugins: [
+    // plugins: utils.getHtmlPlugins()
+    new HtmlWebpackPlugin({
+      filename: `index.html`,
+      template: 'template.html',
+      title: 'base',
+      inject: true
+    }),
+    new webpack.HotModuleReplacementPlugin()
+  ]
+})
 
 module.exports = webpackDevConf

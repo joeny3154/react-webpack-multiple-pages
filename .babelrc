@@ -13,5 +13,6 @@
       "modules": false
     }],
     "react"
-  ]
+  ],
+  "plugins": ["react-hot-loader/babel"]
 }

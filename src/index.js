@@ -1,43 +1,22 @@
 import 'babel-polyfill'
-// import React from 'react'
+import './assets/styles/index.css'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { AppContainer } from 'react-hot-loader'
+import HelloWorld from './container/HelloWorld.jsx'
 
-// let func = () => console.log('func')
+const render = (App) => {  
+  ReactDOM.render(  
+    <App/>,  
+    document.getElementById('root')  
+  )  
+}
 
-console.log(Object.values({ 1: 2 }));
+render(HelloWorld)
 
-console.log(Array.isArray([]));
-
-console.log('foo'.includes('f'))
-
-async function a() {
-  console.log('begin');
-  await new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, 1000)
+// Hot Module Replacement API   
+if (module.hot) {  
+  module.hot.accept('./container/HelloWorld.jsx', () => {  
+    render(require('./container/HelloWorld.jsx').default)  
   })
-  console.log('done');
 }
-a();
-
-class B {
-  // static name = 'name'
-  static sayHello() {
-    console.log('hello')
-  }
-  sayHi() {
-    console.log('hi')
-  }
-}
-const b = new B()
-b.sayHi()
-// console.log(B.name)
-console.log(B.sayHello())
-
-const elements = [1, 2, 3].map((item) => {
-  return (
-    <div>{item}</div>
-  )
-})
-
-console.log(elements)

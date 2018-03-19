@@ -13,10 +13,24 @@ const webpackDevConf = merge(webpackBaseConf, {
     host: 'localhost',
     port: 9001,
     publicPath: '/'
+    // quiet: true, // 启用 quiet 后，除了初始启动信息之外的任何内容都不会被打印到控制台
+    // 与监视文件相关的控制选项
+    // watchOptions: {
+    //   poll: false // 是否开启轮询，此处为 false，如果指定毫秒数，则在指定毫秒时间进行轮询
+    // },
+    // open: false, // 自动打开浏览器
+    // overlay: { warnings: false, errors: true }, // 编译器错误或警告时，是否在浏览器中全屏显示出来。 默认情况下false禁用。 
+    // clientLogLevel: 'warning',
+    // historyApiFallback: true,
+    // hot: true, // 启用webpack模块热替换特性
+    // compress: true, // 启用gzip 压缩
+    // proxy: {},
   },
   plugins: [
     new HtmlWebpackPlugin({
-      filename: 'index.html',
+      filename: `index.html`,
+      template: 'template.html',
+      title: 'base',
       inject: true
     })
   ]
@@ -25,29 +39,12 @@ const webpackDevConf = merge(webpackBaseConf, {
 module.exports = webpackDevConf
 ```
 
-# npm 脚本
-
-`package.json`
+添加到`package.json`通过`npm run dev`执行
 
 ``` json
 "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js"
+  "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --mode development"
 },
 ```
 
-`npm run dev`:如果你使用的是webpack4, 运行webpack命令需要单独安装`webpack-cli`,否则会看到如下提示：
-
-```
-Please install 'webpack-cli' in addition to webpack itself to use the CLI.
--> When using npm: npm install webpack-cli -D
--> When using yarn: yarn add webpack-cli -D
-module.js:472
-    throw err;
-    ^
-
-Error: Cannot find module 'webpack-cli/bin/config-yargs'
-```
-
-安装`webpack-cli`即可，`npm install webpack-cli -D`
 

@@ -18,9 +18,9 @@ const assetsPath = function (_path) {
 
 module.exports = {
   // context: path.resolve(__dirname, '../'),
+  // entry: utils.getEntrys(),
   entry: {
-    // index: ['babel-polyfill', './src/index.js']
-    index: './src/index.js'
+    index: ['react-hot-loader/patch', './src/index.js']
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
@@ -82,25 +82,5 @@ module.exports = {
         }
       }
     ]
-  },
-  devServer: {
-    host: 'localhost',
-    port: 9001,
-    publicPath: '/',
-    // open: true
-  },
-  optimization: {
-    splitChunks: {
-      name: 'common'
-    },
-    runtimeChunk: true
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      filename: `index.html`,
-      template: 'template.html',
-      title: 'base',
-      inject: true
-    })
-  ]
+  }
 }

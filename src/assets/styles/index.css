@@ -2,4 +2,5 @@
   box-sizing: border-box;
   text-align: center;
   background: url(../images/img.png) center no-repeat;
+  font-weight: bold;
 }

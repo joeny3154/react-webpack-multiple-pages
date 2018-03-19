@@ -1,7 +1,6 @@
 eslint配置
 =====
 
-
 `npm i --save-dev eslint eslint-loader`
 
 配置`eslint-loader`:
@@ -26,12 +25,12 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter');
 },
 ```
 
-项目根目录添加`.eslintrc.json`文件，添加
+项目根目录创建`.eslintrc.json`，添加eslint配置：
 
 ``` json
 {
   // ESLint 默认使用Espree作为其解析器, Babel-ESLint 是对Babel解析器的包装使其与 ESLint 兼容
-  // 因为我们使用es6, 需要安装babel-eslint,否则很多语法会报错
+  // 因为我们使用es6, 需要安装babel-eslint, 否则很多语法会报错
   "parser": "babel-eslint",
   "parserOptions": {
     // sourceType：默认为 "script"，我们这里使用ECMAScript模块，设置为"module"
@@ -41,38 +40,47 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter');
     // eslint-plugin-react
     "react"
   ],
+  // 扩展配置规则
   "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended"
+    // "eslint:recommended", // eslint 推荐的扩展配置
+    "plugin:react/recommended" // eslint-plugin-react推荐的扩展配置
   ],
   "env": {
     "browser": true,
-    "es6": true
   },
   "rules": {}
 }
 ```
 
-识别react中的一些语法检验
+通过配置`extends`选项添加以下预设的规则套餐，比如添加`eslint-plugin-react`插件中推荐规则：`"extends": ["plugin:react/recommended"]`
+
+通过设置`rules`选项修改预设的规则，但设置规则 ID 等于以下的值之一
+
+- "off" 或 0 - 关闭规则
+
+- "warn" 或 1 - 开启规则，使用警告级别的错误：warn (不会导致程序退出)
+
+- "error" 或 2 - 开启规则，使用错误级别的错误：error (当被触发的时候，程序会退出)
 
 ``` json
 {
   "rules": {
-    "no-multi-spaces": 1,
-    "react/jsx-space-before-closing": 1,        // 总是在自动关闭的标签前加一个空格，正常情况下也不需要换行
-    "jsx-quotes": 1,
-    "react/jsx-closing-bracket-location": 1,    // 遵循JSX语法缩进/格式
-    "react/jsx-boolean-value": 1,               // 如果属性值为 true, 可以直接省略
-    "react/no-string-refs": 1,      // 总是在Refs里使用回调函数
-    "react/self-closing-comp": 1,    // 对于没有子元素的标签来说总是自己关闭标签
-    "react/jsx-no-bind": 1,          // 当在 render() 里使用事件处理方法时，提前在构造函数里把 this 绑定上去
-    "react/sort-comp": 1,            // 按照具体规范的React.createClass 的生命周期函数书写代码
-    "react/jsx-pascal-case": 1        // React模块名使用帕斯卡命名，实例使用骆驼式命名
+    "react/jsx-key": 2
   }
 }
 ```
 
+`eslint-plugin-react`更多的详细配置和支持的rules列表[查看这里](https://github.com/yannickcr/eslint-plugin-react)
 
-eslint官方给出的一些有关react配置的文档: https://github.com/yannickcr/eslint-plugin-react
+以上配置我们是通过在webpack编译过程中实时进行校验，很多时候我们也会在`git commit`之前进行校验，这样我们还需要配置`.eslintignore`忽略提交中不需要校验的文件。
 
-https://www.jianshu.com/p/edda91891fb2
+配置`.eslintignore`:
+
+```
+dist
+config
+build
+```
+
+引入`pre-commit`可以实现`commit`之前校验，这里不具体说明了, 可以[查看这里](./pre-commit.md)。
+

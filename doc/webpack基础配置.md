@@ -115,9 +115,3 @@ module: {
 },
 ```
 
-### babel 配置
-
-
-
-### plugins 配置
-

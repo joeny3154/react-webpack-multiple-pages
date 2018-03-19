@@ -17,6 +17,7 @@ module: {
     // ...
   ]
 }
+
 ```
 
 babel 默认只对语法进行编译，对于新的api它什么都不做，添加`.babelrc`文件，可以通过添加`plugins`选项来扩展babel的功能，但插件的添加很多很复杂，我们可以给babel添加`presets`。`presets`可以简单的理解为一组`plugins`的套餐，这里我们使用`babel-preset-env`, 它本身包含了很多插件，并且可以根据我们指定的运行环境自动激活必要的插件和添加`polyfills`。示例如下：
