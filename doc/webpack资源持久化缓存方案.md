@@ -136,6 +136,7 @@ new webpack.optimize.CommonsChunkPlugin({
 ```
 
 之前已经说过webpack 在入口 chunk 中，都会包含了样板代码(boilerplate)，特别是 runtime 和 manifest。通过指定 entry 配置中未用到的名称, 通常使用`runtime` 或者 `manifest`，`CommonsChunkPlugin`会自动将我们需要的内容提取到单独的包中：
+
 ``` js
 new webpack.optimize.CommonsChunkPlugin({
   name: 'manifest'

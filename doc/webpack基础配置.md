@@ -59,7 +59,7 @@ module: {
 `style-loader`的功能是将CSS通过`<style>`标签注入到html中。
 此外还需要安装`flie-loader`来解析css中的url资源引用，如字体、图片，保证打包后的css能正确引用到资源。
 
-我们通过`postcss`来给样式补充兼容前缀，使用在根目录创建`.postcssrc.js`来配置`postcss`:
+我们使用`postcss`来给样式补充兼容前缀，使用在根目录创建`.postcssrc.js`来配置`postcss`:
 
 ``` js
 module.exports = {
